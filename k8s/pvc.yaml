@@ -1,0 +1,14 @@
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  namespace: galaxy-d4science
+  name: exports-rakip-trial
+  annotations:
+    volume.beta.kubernetes.io/storage-class: "managed-nfs-storage"
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Gi

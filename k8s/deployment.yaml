@@ -1,0 +1,53 @@
+---
+  apiVersion: extensions/v1beta1
+  kind: Deployment
+  metadata:
+    name: galaxy-rakip-trial
+    namespace: galaxy-d4science
+  spec:
+    replicas: 1
+    template:
+      metadata:
+        labels:
+          app: galaxy-rakip-trial
+      spec:
+        containers:
+        - name: galaxy
+          image: enolfc/galaxy-stable:v0.8.3
+          ports:
+          - containerPort: 80
+          env:
+          - name: GALAXY_CONFIG_LOG_LEVEL
+            value: "WARNING"
+          - name: GALAXY_CONFIG_HOST
+            value: "0.0.0.0"
+          - name: GALAXY_CONFIG_USE_REMOTE_USER
+            value: "True"
+          - name: GALAXY_CONFIG_REMOTE_USER_MAILDOMAIN
+            value: "d4science.org"
+          #- name: GALAXY_CONFIG_GALAXY_INFRASTRUCTURE_URL
+          #  value: "https://galaxy-aginfraplus.fedcloud-tf.fedcloud.eu/"
+          - name: GALAXY_CONFIG_GALAXY_INFRASTRUCTURE_WEB_PORT
+            value: "80"
+          - name: GALAXY_CONFIG_BRAND
+            value: "AGINFRA+"
+          - name: EGI_PROXY_PREFIX
+            value: "/rakip_trial"
+          resources:
+            limits:
+              memory: 3000M
+            requests:
+              cpu: 200m
+              memory: 2000M
+          volumeMounts:
+          - name: persistent-exports 
+            mountPath: "/exports"
+          - name: admin-token 
+            mountPath: "/etc/d4science/admin-token"
+        volumes:
+        - name: persistent-exports 
+          persistentVolumeClaim:
+            claimName: exports-rakip-trial
+        - name: admin-token
+          secret:
+            secretName: admin-token-rakip-trial

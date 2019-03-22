@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/tls-acme: "true"
+  name: galaxy-rakip-trial
+  namespace: galaxy-d4science
+spec:
+  rules:
+  - host: galaxy-d4science.fedcloud-tf.fedcloud.eu
+    http:
+      paths:
+      - backend:
+          serviceName: galaxy-rakip-trial
+          servicePort: 80
+        path: /rakip_trial
+  tls:
+  - hosts:
+    - galaxy-d4science.fedcloud-tf.fedcloud.eu
+    secretName: acme-tls-galaxy

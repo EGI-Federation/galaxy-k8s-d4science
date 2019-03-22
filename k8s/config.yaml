@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: galaxy-config-rakip-trial
+  namespace: galaxy-d4science
+data:
+  uwsgi.conf: |-
+    underscores_in_headers on;
+
+    # pass to uWSGI by default
+    location / {
+        uwsgi_pass 127.0.0.1:4001;
+        include uwsgi_params;
+        # forward the remote_user header in case it is set by a previous proxy
+        uwsgi_param HTTP_REMOTE_USER $http_remote_user if_not_empty;
+    }

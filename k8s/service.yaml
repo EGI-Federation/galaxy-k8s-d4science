@@ -1,0 +1,14 @@
+---
+  kind: Service
+  apiVersion: v1
+  metadata:
+    name: galaxy-rakip-trial
+    namespace: galaxy-d4science
+  spec:
+    selector:
+      app: galaxy-rakip-trial
+    ports:
+      - protocol: TCP
+        port: 80
+        targetPort: 80
+        name: api
