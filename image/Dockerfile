@@ -6,6 +6,8 @@ RUN mkdir -p /etc/d4science \
              /galaxy-central/tools/d4science/
 
 COPY call-wps.sh /galaxy-central/tools/d4science/call-wps.sh
+COPY extract.sh /galaxy-central/tools/d4science/extract.sh
+COPY extract.xml /galaxy-central/tools/d4science/extract.xml
 
 RUN cp /galaxy-central/config/tool_conf.xml.sample /galaxy-central/config/tool_conf.xml
 

@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+<tool id="d4science:extract" name="CSV extractor" version="1.1.0">
+  <description>Extracts CSV from DataMiner output so it can be used in workflows</description>
+  <command interpreter="sh"><![CDATA[
+extract.sh --inputdata $input
+           --inputdir $input.extra_files_path
+           --output $out
+#if $descriptor
+           --descriptor $descriptor
+#end if
+]]></command> 
+  <inputs>
+    <param help="Dataminer dataset" label="Dataminer dataset" name="input" type="data" />
+    <param help="Optionally specify the name of the file to extract from DataMiner output" label="Descriptor" name="descriptor" type="text"/>
+  </inputs>
+  <outputs>
+    <data format="tabular" label="CSV file" name="out"/>
+  </outputs>
+  <help>Generates tabular data from the HTML data created by a DataMiner call. Optionally specify the name of the file to extact in the desctiption</help>
+</tool>
