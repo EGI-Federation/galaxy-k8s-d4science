@@ -25,14 +25,10 @@
             value: "True"
           - name: GALAXY_CONFIG_REMOTE_USER_MAILDOMAIN
             value: "d4science.org"
-          #- name: GALAXY_CONFIG_GALAXY_INFRASTRUCTURE_URL
-          #  value: "https://galaxy-aginfraplus.fedcloud-tf.fedcloud.eu/"
           - name: GALAXY_CONFIG_GALAXY_INFRASTRUCTURE_WEB_PORT
             value: "80"
           - name: GALAXY_CONFIG_BRAND
             value: "AGINFRA+"
-          - name: EGI_PROXY_PREFIX
-            value: "/rakip_trial"
           resources:
             limits:
               memory: 3000M
