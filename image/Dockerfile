@@ -1,9 +1,14 @@
-FROM bgruening/galaxy-stable:19.01
+FROM bgruening/galaxy-stable:19.05
 
 RUN mkdir -p /etc/d4science \
              /galaxy-central/tools/d4science/ \
     && chown -R galaxy:galaxy /etc/d4science \
              /galaxy-central/tools/d4science/
+
+#need to add gcc as pyproj install from source needs it
+#and libmagic-dev needed by python-libmagic
+RUN apt-key adv --refresh-keys --keyserver keyserver.ubuntu.com
+RUN apt-get update && apt-get install -y gcc  libmagic-dev
 
 COPY call-wps.sh /galaxy-central/tools/d4science/call-wps.sh
 COPY extract.sh /galaxy-central/tools/d4science/extract.sh
